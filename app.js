@@ -44,3 +44,12 @@
 	 ]).addTo(mymap);
 
 	 polygon.bindPopup('I represent the Salt Lake Stadium').openPopup();
+
+
+	 //standalone popups
+
+	 var popup = L.popup()
+    .setLatLng([22.563922, 88.368948])
+    .setContent("I am a standalone popup for NRS Hospital")
+    .openOn(mymap);
+
