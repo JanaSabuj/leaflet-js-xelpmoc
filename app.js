@@ -49,7 +49,21 @@
 	 //standalone popups
 
 	 var popup = L.popup()
-    .setLatLng([22.563922, 88.368948])
-    .setContent("I am a standalone popup for NRS Hospital")
-    .openOn(mymap);
+	     .setLatLng([22.563922, 88.368948])
+	     .setContent("I am a standalone popup for NRS Hospital")
+	     .openOn(mymap);
 
+
+
+	 //events on click for displaying lat long clicked
+
+	 var popup = L.popup();
+
+	 function onMapClick(e) {
+	     popup
+	         .setLatLng(e.latlng)
+	         .setContent("You clicked the map at " + e.latlng.toString())
+	         .openOn(mymap);
+	 }
+
+	 mymap.on('click', onMapClick);
