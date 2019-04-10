@@ -16,7 +16,7 @@ var map = L.map('map').fitWorld();
     var radius = e.accuracy / 2;
 
     L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point ").openPopup();
+        .bindPopup("You are within " + radius + " meters from this point. <br> Great! We located you!.").openPopup();
 
     L.circle(e.latlng, radius).addTo(map);
 	}

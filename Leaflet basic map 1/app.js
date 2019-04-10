@@ -50,43 +50,10 @@
 
 	 //standalone popups
 
-	 var popup = L.popup()
-	     .setLatLng([22.563922, 88.368948])
-	     .setContent("I am a standalone popup for NRS Hospital");
 
 
+	 // var popup = L.popup()
+	 //     .setLatLng([22.5542, 88.3359])
+	 //     .setContent(" This map has 3 markers, 1 polygon and 1 circle.You can find them.  <ul> <li> JU Main Campus </li> <li> JU SL Campus </li> <li> Xelpmoc Office </li> <li> JU SL Campus Circle </li> <li> Salt Lake Stadium Polygon </li></ul> <br> I'm just a random notifier. ").openOn(mymap);
 
-// 	 //events on click for displaying lat long clicked
-
-// 	 var popup = L.popup();
-
-// 	 function onMapClick(e) {
-// 	     popup
-// 	         .setLatLng(e.latlng)
-// 	         .setContent("You clicked the map at " + e.latlng.toString())
-// 	         .openOn(mymap);
-// 	 }
-
-// 	 mymap.on('click', onMapClick);
-
-// 	 function onLocationFound(e) {
-//     var radius = e.accuracy / 2;
-
-//     L.marker(e.latlng).addTo(map)
-//         .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-//     L.circle(e.latlng, radius).addTo(map);
-// }
-
-// // map.on('locationfound', onLocationFound);
-
-// function onLocationError(e) {
-//     alert(e.message);
-// }
-
-// // map.on('locationerror', onLocationError);
-
-// 	map.on('locationfound', onLocationFound);
-// 	map.on('locationerror', onLocationError);
-
-// 	map.locate({setView: true, maxZoom: 16});
+	     var marker = L.marker([22.5542, 88.3359]).addTo(mymap).bindPopup('This map has 3 markers, 1 polygon and 1 circle.You can find them.  <ul> <li> JU Main Campus </li> <li> JU SL Campus </li> <li> Xelpmoc Office </li> <li> JU SL Campus Circle </li> <li> Salt Lake Stadium Polygon </li></ul> <br> Im just a random notifier.').openPopup();
