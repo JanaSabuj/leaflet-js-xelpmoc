@@ -8,4 +8,5 @@ var map = L.map('map').fitWorld();
 		id: 'mapbox.streets'
 	}).addTo(map);
 
-	
+	//ask the user of their location
+	map.locate({setView: true, maxZoom: 16});
