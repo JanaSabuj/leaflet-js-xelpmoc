@@ -22,3 +22,11 @@ var map = L.map('map').fitWorld();
 	}
 
 	map.on('locationfound', onLocationFound);
+
+
+	//if error in detecting location- user denied geolocation
+	function onLocationError(e) {
+    alert(e.message);
+	}
+
+	map.on('locationerror', onLocationError);
