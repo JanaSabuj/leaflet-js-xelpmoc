@@ -10,3 +10,15 @@ var map = L.map('map').fitWorld();
 
 	//ask the user of their location
 	map.locate({setView: true, maxZoom: 16});
+
+	//add marker to the current location
+	function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point ").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+	}
+
+	map.on('locationfound', onLocationFound);
