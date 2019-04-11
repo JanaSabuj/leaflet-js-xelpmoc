@@ -45,18 +45,25 @@ var parks = $.ajax({
          id: 'mapbox.streets'
      }).addTo(map);
 
-      var marker = L.marker([38.6270,-90.1994]).addTo(map).bindPopup(' <ul> <li> Blue- All the Kentucky counties </li> <li> Red- All the Kentucky Motorways </li> <li> Black- All the Kentucky Parks </li> </ul> Im just a random notifier. <br> Zoom in for better visualization!').openPopup();
+      var marker = L.marker([38.6270,-90.1994]).addTo(map).bindPopup(' <ul> <li> Blue- All the Kentucky counties. Click to know the name and region.  </li> <li> Red- All the Kentucky Motorways. Zoom in and click to know the name and no of lanes it has. </li> <li> Black- All the Kentucky Parks. Click to view the name. Some are unnamed parks for your info. </li> </ul> Im just a random notifier. <br> Zoom in for better visualization!').openPopup();
 
        function basement(feature, layer){
 
-      layer.bindPopup(" <h3> Hi I am an  info popup. </h3> " + " <h4> You clicked  </h4>"+ "<h1>" +feature.properties.NAME_1 +"</h1>" +"<h2>"+  "   It is a "+ feature.properties.ENGTYPE_1 + "</h2");
+      layer.bindPopup(" <h3> Hi I am a COUNTY. </h3> " + " <h4> You clicked  </h4>"+ "<h1>" +feature.properties.NAME  +"</h1>" +"<h2>"+  "   It belongs to  "+ feature.properties.REGION + " region</h2");
 
      };
 
      //motorway func
 function basementmotor(feature, layer){
 
-      layer.bindPopup(" <h3> Hi I am an  info popup. </h3> " + " <h4> You clicked a "  +feature.properties.highway +"</h4>" +"<h2>"+  "   It has "+ feature.properties.lanes + " lanes. <br> </h2>" + "<h4> You can drive at a max speed of "+ feature.properties.maxspeed+"</h4>");
+      layer.bindPopup(" <h3> Hi I am a MOTORWAY. </h3> " + " <h4> You clicked a "  +feature.properties.highway +"</h4>" +"<h2>"+  "   It has "+ feature.properties.lanes + " lanes. <br> </h2>" + "<h4> You can drive at a max speed of "+ feature.properties.maxspeed+"</h4>");
+
+     };
+
+     //park func
+function basementpark(feature, layer){
+
+      layer.bindPopup(" <h4> Hi I am a PARK. </h4> " + " <h2> This is the  "  +feature.properties.name +" </h2>"   );
 
      };
 
@@ -78,13 +85,14 @@ function basementmotor(feature, layer){
   }).addTo(map);
   
   var kyParks = L.geoJSON(parks.responseJSON, {
+    onEachFeature: basementpark,
     pointToLayer: function(feature, latlng) {
       return L.circleMarker(latlng, {
         radius: 4,
         fillOpacity: 0,
         color: 'black',
         weight: 0.75,
-         onEachFeature: basement
+         
       })
     }
   }).addTo(map);
