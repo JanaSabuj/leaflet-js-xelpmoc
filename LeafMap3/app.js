@@ -47,17 +47,34 @@ var parks = $.ajax({
 
       var marker = L.marker([38.6270,-90.1994]).addTo(map).bindPopup(' <ul> <li> Blue- All the Kentucky counties </li> <li> Red- All the Kentucky Motorways </li> <li> Black- All the Kentucky Parks </li> </ul> Im just a random notifier. <br> Zoom in for better visualization!').openPopup();
 
-      L.geoJSON(counties.responseJSON).addTo(map);	
+       function basement(feature, layer){
+
+      layer.bindPopup(" <h3> Hi I am an  info popup. </h3> " + " <h4> You clicked  </h4>"+ "<h1>" +feature.properties.NAME_1 +"</h1>" +"<h2>"+  "   It is a "+ feature.properties.ENGTYPE_1 + "</h2");
+
+     };
+
+     //motorway func
+function basementmotor(feature, layer){
+
+      layer.bindPopup(" <h3> Hi I am an  info popup. </h3> " + " <h4> You clicked a "  +feature.properties.highway +"</h4>" +"<h2>"+  "   It has "+ feature.properties.lanes + " lanes. <br> </h2>" + "<h4> You can drive at a max speed of "+ feature.properties.maxspeed+"</h4>");
+
+     };
+
+      L.geoJSON(counties.responseJSON,{
+        onEachFeature: basement
+      }).addTo(map);	
 
       var kyCounties = L.geoJSON(counties.responseJSON, {
     fillOpacity: 0,
     color: '#b2b2b2',
-    weight: 0.75
+    weight: 0.75,
+    onEachFeature: basement
   }).addTo(map);
 
   var kyMotorways = L.geoJSON(motorways.responseJSON, {
     color: 'red',
-    weight: 1
+    weight: 1,
+     onEachFeature: basementmotor
   }).addTo(map);
   
   var kyParks = L.geoJSON(parks.responseJSON, {
@@ -66,7 +83,8 @@ var parks = $.ajax({
         radius: 4,
         fillOpacity: 0,
         color: 'black',
-        weight: 0.75
+        weight: 0.75,
+         onEachFeature: basement
       })
     }
   }).addTo(map);
