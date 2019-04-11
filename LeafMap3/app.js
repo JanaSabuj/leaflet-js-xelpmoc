@@ -28,9 +28,10 @@
          id: 'mapbox.streets'
      }).addTo(map);
 
+      L.geoJSON(counties.responseJSON).addTo(map);
+
 
  });
 
  //displaying featurers of the data
 
- L.geoJSON(counties.responseJSON).addTo(map);
