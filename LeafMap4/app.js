@@ -1,5 +1,5 @@
  
-     var map = L.map('map').setView([20.5937, 78.9629], 5);
+     var map = L.map('map').setView([20.5937, 78.9629], 4.5);
 
 
 
@@ -12,12 +12,16 @@
          id: 'mapbox.streets'
      }).addTo(map);
 
+     //info marker
+
+     var marker = L.marker([28.7041,77.1025]).addTo(map).bindPopup(' <h3>This map covers all the Indian States and UTs.</h3> <h4>The borders of state can be visualized. </h4> <h4>Click on any to know the name of the state and other info. <br> Zoom in for better visualization of the state boundaries! </h4>').openPopup();
+
 
      //loading map data from local geojson
      
      function basement(feature, layer){
 
-      layer.bindPopup(" <h1>Hi Im info </h1> "+ feature.properties.NAME_1 );
+      layer.bindPopup(" <h3> Hi I am an  info popup. </h3> " + " <h4> You clicked  </h4>"+ "<h1>" +feature.properties.NAME_1 +"</h1>" +"<h2>"+  "   It is a "+ feature.properties.ENGTYPE_1 + "</h2");
 
      };
 
