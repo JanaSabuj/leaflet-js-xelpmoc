@@ -1,4 +1,19 @@
  
+	 //add AJAX for requesting json data from url
+
+	 var counties = $.ajax({
+          url:"https://gist.githubusercontent.com/maptastik/df8e483d5ac1c6cae3dc4a7c02ea9039/raw/9cd46849bddcfa90aab240772a12275408d6d8d0/kyCounties.geojson",
+          dataType: "json",
+          success: console.log("County data successfully loaded."),
+          error: function (xhr) {
+            alert(xhr.statusText)
+          }
+        })
+
+
+
+
+
 	 var map = L.map('map').setView([37.857507, -85.632935], 7);
 	 
 
