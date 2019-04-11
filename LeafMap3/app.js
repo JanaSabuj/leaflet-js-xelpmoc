@@ -1,5 +1,5 @@
  
-	 var map = L.map('map').setView([22.5726, 88.3639], 13);
+	 var map = L.map('map').setView([37.857507, -85.632935], 7);
 	 
 
 
