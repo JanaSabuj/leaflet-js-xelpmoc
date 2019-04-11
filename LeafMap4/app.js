@@ -1,5 +1,5 @@
  
-     var map = L.map('map').setView([37.857507, -85.632935], 7);
+     var map = L.map('map').setView([20.5937, 78.9629], 7);
 
 
 
@@ -11,15 +11,18 @@
              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
          id: 'mapbox.streets'
      }).addTo(map);
+
+
+     //loading map data from local geojson
      
      function basement(feature, layer){
 
-      layer.bindPopup(" <h1>Hi Im info </h1>");
+      layer.bindPopup(" <h1>Hi Im info </h1> "+ feature.properties.NAME_1 );
 
      };
 
 
-    L.geoJSON(kyCounties,{
+    L.geoJSON(india,{
       onEachFeature: basement
 
     }).addTo(map);
